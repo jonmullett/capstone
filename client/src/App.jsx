@@ -4,9 +4,13 @@ import Users from "./pages/Users";
 import Businesses from "./pages/Businesses";
 import CreateReview from "./pages/CreateReview";
 import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 function App() {
   const [auth, setAuth] = useState({});
+  const [login, setLogin] = useState([]);
+  const [register, setRegister] = useState([]);
   const [users, setUsers] = useState([]);
   const [businesses, setBusinesses] = useState([]);
   const [reviews, setReviews] = useState([]);
@@ -59,13 +63,16 @@ function App() {
     <>
       <h1>Acme Business Reviews</h1>
       <nav>
-        <Link to="/">Home</Link>
+        <a href="menuhome">
+          <Link to="/">Home</Link>
+        </a>
         <Link to="/businesses">Businesses ({businesses.length})</Link>
         <Link to="/users">Users ({users.length})</Link>
+
         {auth.id ? (
           <Link to="/createReview">Create Review</Link>
         ) : (
-          <Link to="/">Register/Login</Link>
+          <Link to="/login">Login </Link>
         )}
       </nav>
       {auth.id && <button onClick={logout}>Logout {auth.username}</button>}
@@ -79,6 +86,8 @@ function App() {
               businesses={businesses}
               users={users}
               reviews={reviews}
+              login={login}
+              register={register}
             />
           }
         />
@@ -88,6 +97,18 @@ function App() {
         />
         <Route path="/users" element={<Users users={users} />} />
         {!!auth.id && <Route path="/createReview" element={<CreateReview />} />}
+
+        <Route
+          path="/login"
+          element={<Login login={login} authAction={authAction} auth={auth} />}
+        />
+
+        <Route
+          path="/register"
+          element={
+            <Register register={register} authAction={authAction} auth={auth} />
+          }
+        />
       </Routes>
     </>
   );
