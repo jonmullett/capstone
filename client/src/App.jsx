@@ -1,11 +1,15 @@
+import axios from "axios";
 import { useState, useEffect } from "react";
-import { Link, Route, Routes } from "react-router-dom";
+import { Link, NavLink, Route, Routes } from "react-router-dom";
 import Users from "./pages/Users";
 import Businesses from "./pages/Businesses";
 import CreateReview from "./pages/CreateReview";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import UserDetails from "./pages/UserDetails";
+import BusinessDetails from "./pages/BusinessDetails";
+// import NavDropdown from "./pages/NavDropdown.jsx";
 
 function App() {
   const [auth, setAuth] = useState({});
@@ -13,21 +17,45 @@ function App() {
   const [register, setRegister] = useState([]);
   const [users, setUsers] = useState([]);
   const [businesses, setBusinesses] = useState([]);
-  const [reviews, setReviews] = useState([]);
+  const [createReview, setCreateReview] = useState([]);
+  // const [navDropdown, setNavDropdown] = useState([]);
 
   useEffect(() => {
     attemptLoginWithToken();
   }, []);
 
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_API_BASE_URL}/businesses`)
+      .then((data) => {
+        console.log(data);
+        setBusinesses(data.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_API_BASE_URL}/users`)
+      .then((data) => {
+        console.log(data);
+        setUsers(data.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   const attemptLoginWithToken = async () => {
     const token = window.localStorage.getItem("token");
+    console.log(token);
     if (token) {
-      const response = await fetch(`/api/auth/me`, {
+      const response = await fetch(`http://localhost:3000/api/auth/me`, {
         headers: {
           authorization: token,
         },
       });
+
       const json = await response.json();
+
       if (response.ok) {
         setAuth(json);
       } else {
@@ -61,13 +89,24 @@ function App() {
 
   return (
     <>
-      <h1>Acme Business Reviews</h1>
+      <h1 id="header">Acme Business Reviews</h1>
       <nav>
         <a href="menuhome">
           <Link to="/">Home</Link>
         </a>
-        <Link to="/businesses">Businesses ({businesses.length})</Link>
-        <Link to="/users">Users ({users.length})</Link>
+        <NavLink
+          className={({ isActive }) => (isActive ? "style activenav" : "style")}
+          to="/businesses"
+        >
+          Businesses ({businesses.length})
+        </NavLink>
+
+        <NavLink 
+        className={({ isActive }) => (isActive ? "style activenav" : "style")}
+        to="/users">
+          
+          Users ({users.length})
+          </NavLink>
 
         {auth.id ? (
           <Link to="/createReview">Create Review</Link>
@@ -76,6 +115,7 @@ function App() {
         )}
       </nav>
       {auth.id && <button onClick={logout}>Logout {auth.username}</button>}
+
       <Routes>
         <Route
           path="/"
@@ -85,7 +125,7 @@ function App() {
               auth={auth}
               businesses={businesses}
               users={users}
-              reviews={reviews}
+              createReview={createReview}
               login={login}
               register={register}
             />
@@ -93,10 +133,22 @@ function App() {
         />
         <Route
           path="/businesses"
-          element={<Businesses businesses={businesses} />}
+          element={
+            <Businesses setBusinesses={setBusinesses} businesses={businesses} />
+          }
         />
-        <Route path="/users" element={<Users users={users} />} />
-        {!!auth.id && <Route path="/createReview" element={<CreateReview />} />}
+
+        {!!auth.id && (
+          <Route
+            path="/createReview"
+            element={<CreateReview userId={auth.id} />}
+          />
+        )}
+
+        <Route
+          path="/users"
+          element={<Users setUsers={setUsers} users={users} />}
+        />
 
         <Route
           path="/login"
@@ -104,9 +156,39 @@ function App() {
         />
 
         <Route
+          path="/createReview"
+          element={<CreateReview CreateReview={CreateReview} />}
+        />
+
+        <Route
+          path="/userDetail/:userId"
+          element={<UserDetails UserDetails={UserDetails} />}
+        />
+
+        <Route
+          path="/businessDetail/:businessId"
+          element={<BusinessDetails BusinessDetails={BusinessDetails} />}
+        />
+
+        <Route
           path="/register"
           element={
             <Register register={register} authAction={authAction} auth={auth} />
+          }
+        />
+
+        <Route
+          path="*"
+          element={
+            <Home
+              authAction={authAction}
+              auth={auth}
+              businesses={businesses}
+              users={users}
+              createReview={createReview}
+              login={login}
+              register={register}
+            />
           }
         />
       </Routes>

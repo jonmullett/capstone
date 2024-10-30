@@ -1,18 +1,23 @@
+import React from "react";
+// import ImagesComponent from "./components/header/images/image1.jpeg"
 import AuthForm from "../components/AuthForm/AuthForm";
+
 
 const Home = ({ auth, authAction, logout, businesses, users, reviews }) => {
   return (
     <div>
-      <h1>Home</h1>
+      <img src="./images/image1.jpeg" alt="logo" />
+      <h1 className="bd2">Welcome to Acme Business Reviews</h1>
       <p>
-        Display some interesting information about our {businesses.length}{" "}
-        Businesses
+        <b>Our Businesses</b>
         <br />
-        Display some interesting information about our {users.length} Users
+        <div class="text1">Businesses ({businesses.length}) </div> <br />
         <br />
-        Display some interesting information about our {reviews.length} Reviews
+        <b>Number of Users </b>
+        <br />
+        <div class="text1">Users ({users.length})</div>
+        <br />
       </p>
-      
     </div>
   );
 };
@@ -22,3 +27,4 @@ const Home = ({ auth, authAction, logout, businesses, users, reviews }) => {
 </div>;
 
 export default Home;
+

@@ -25,4 +25,4 @@ export default function Register({ authAction, auth }) {
   );
 }
 
-// // export default Register;
+// export default Register;

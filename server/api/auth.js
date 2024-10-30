@@ -10,6 +10,7 @@ router.get("/", (req, res) => {
 
 router.post("/login", async (req, res, next) => {
   try {
+    console.log(req.body);
     res.send(await authenticate(req.body));
   } catch (ex) {
     next(ex);

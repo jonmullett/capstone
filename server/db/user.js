@@ -31,7 +31,7 @@ const findUserWithToken = async (token) => {
     const payload = await jwt.verify(token, JWT);
     id = payload.id;
   } catch (ex) {
-    const error = Error("not authorized");
+    const error = Error("Nope!");
     error.status = 401;
     throw error;
   }
@@ -40,7 +40,7 @@ const findUserWithToken = async (token) => {
   `;
   const response = await client.query(SQL, [id]);
   if (!response.rows.length) {
-    const error = Error("not authorized");
+    const error = Error("Better Luck Next Time");
     error.status = 401;
     throw error;
   }
@@ -64,7 +64,7 @@ const authenticate = async ({ username, password }) => {
     !response.rows.length ||
     (await bcrypt.compare(password, response.rows[0].password)) === false
   ) {
-    const error = Error("not authorized");
+    const error = Error("Nice Try!");
     error.status = 401;
     throw error;
   }
@@ -72,4 +72,35 @@ const authenticate = async ({ username, password }) => {
   return { token };
 };
 
-module.exports = { createUser, findUserWithToken, fetchUsers, authenticate };
+const findUserById = async (userId) => {
+  try {
+    const SQL = `SELECT * FROM users WHERE id=$1`;
+    const {
+      rows: [results],
+    } = await client.query(SQL, [userId]);
+    return results;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const getUserReviews = async (userById) => {
+  try {
+    const SQL = `SELECT * FROM users WHERE id=$1`;
+    const {
+      rows: [results],
+    } = await client.query(SQL, [userById]);
+    return results;
+  } catch (error) {
+    throw error;
+  }
+};
+
+module.exports = {
+  createUser,
+  findUserWithToken,
+  fetchUsers,
+  authenticate,
+  findUserById,
+  getUserReviews,
+};

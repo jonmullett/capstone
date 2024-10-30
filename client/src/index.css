@@ -1,48 +1,65 @@
 body {
   font-family: verdana;
-  background-color: rgb(202, 194, 183);
-}
-form {
-  display: flex;
-  flex-direction: column;
+  background-color: rgb(79, 79, 78);
 }
 
-form > * {
-  margin: 0.5rem;
+/*Header*/
+
+h1 {
+  color: rgb(230, 171, 9);
+  text-align: center;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+
 }
+
+.bd2 {
+  color: rgb(254, 168, 19);
+  background-color: rgb(0, 0, 0);
+  padding-bottom: 30px;
+  margin-bottom: 0px;
+  padding-top: 30px;
+  margin-top: -30px;
+  font-size:larger;
+}
+
+.bd2 {
+  padding-top: 30px;
+  margin-top: -40px;
+}
+
+/*Nav Bar Page*/
 
 nav {
   display: flex;
   justify-content: space-around;
-  background-color: grey;
+  background-color: rgb(85, 74, 65);
+  font-weight: 800;
+  font-size: small;
   height: 20px;
   max-width: 100%;
-  padding-top: 11px;
-  padding-bottom: 11px;
+  padding-top: 16px;
+  padding-bottom: 10px;
   text-transform: uppercase;
-  color: white;
-  
+}
 
-
- 
-  
+.activenav {
+  color: rgb(249, 233, 88);
+  box-sizing: border-box;
 }
 
 a {
   text-decoration: none;
+  color: rgb(201, 201, 201);
 }
 
 nav a:hover {
-  background-color: rgb(212, 207, 207);
-box-sizing: border-box;
-height: 20px;
-
-
-
-
+  color: rgb(250, 215, 111);
+  box-sizing: border-box;
+  height: 20px;
 }
 
-
+/*Home Page*/
 
 .home {
   color: aliceblue;
@@ -54,12 +71,72 @@ height: 20px;
   color: cornSilk;
 }
 
-h1 {
-  color: rgb(3, 1, 57);
+.text1 {
+  color: rgb(155, 208, 255);
+}
+
+#text2 {
+  color: rgba(101, 207, 249, 0.974);
+  font-size: x-large;
+}
+
+b {
+  color: beige;
+  font-size: larger;
+}
+
+/*Business Page*/
+
+.businesslinks {
   text-align: center;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  text-transform: uppercase;
+  margin-top: 20px;
+  margin-bottom: 60px;
+}
+
+#username {
+  text-align: center;
+  color: cornflowerblue;
+}
+
+.businesslinks a:hover {
+  color: rgb(250, 215, 111);
+}
+
+a:active {
+  color: rgb(72, 14, 126);
+}
+
+a.selected {
+  color: aqua;
+}
+
+/*User Page  */
+
+.userlinks a:hover {
+  color: rgb(250, 215, 111);
+}
+
+.userlinks a:active {
+  color: rgb(194, 245, 8);
+}
+
+.userlinks {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+/*Login Page*/
+
+#logtext {
+  color: white;
+}
+
+#login {
+  color: skyblue;
+  font-size: x-large;
+  font-weight: 700;
+  text-indent: -9%;
 }
 
 button {
@@ -71,23 +148,89 @@ form {
   padding-left: 40%;
 }
 
+p {
+  text-align: center;
+}
+
+#logintext {
+  color: bisque;
+  font-size: x-large;
+  font-weight: 500;
+  text-indent: -8%;
+}
+
+/*CreateReview Page*/
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form > * {
+  margin: 0.8rem;
+}
+
+#formtext {
+  color: burlywood;
+  font-size: large;
+  text-indent: -65%;
+}
+
+#rating {
+  color: burlywood;
+  text-indent: -39%;
+}
+
+#comments {
+  color: burlywood;
+  text-indent: -35%;
+}
+
+#h1review {
+  color: rgb(72, 117, 185);
+}
+
+/*USer Detal*/
+
+#userdetailh2 {
+  color: blanchedalmond;
+  text-align: center;
+  margin-top: 20px;
+}
+
+#businessname {
+  color: cornflowerblue;
+  text-align: center;
+}
+
+/* Business Details */
+
+#businessdetailh2 {
+  color: white;
+  text-align: center;
+  font-size: medium;
+}
+
+.bd4 {
+  color: rgb(248, 247, 246);
+}
+
+/* Footer */
 .footer {
-  position: fixed;
+  /* position: fixed; */
+  position:relative;
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 200px;
-  background-color: rgb(174, 177, 180);
-  color:grey;
+  height: 100px;
+  background-color: rgb(82, 72, 64);
+  color: rgba(194, 183, 164, 0.946);
   line-height: 5px;
   padding-top: 20px;
+  padding-bottom: 100px;
   text-align: center;
 }
 
 foottext {
   color: black;
-}
-
-p {
-  text-align: center;
 }

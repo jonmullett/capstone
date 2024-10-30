@@ -18,11 +18,13 @@ export default function Login({ authAction, auth }) {
 
   return (
     <div>
-      <p>
-        {"LOGIN"}
-        <AuthForm authAction={authAction} mode="login" />
-      </p>
-      <div>
+      <div id="logintext">
+        <p>
+          {"LOGIN"}
+          <AuthForm authAction={authAction} mode="login" />
+        </p>
+      </div>
+      <div id="logtext">
         <p>
           {"Don't have an account, "}
           <a href="register">

@@ -1,0 +1,15 @@
+
+import React from 'react';
+import image1 from "./Logo.jsx";
+
+
+const image1.jpeg = () => {
+  return (
+    <div>
+      <img src={image1.jpeg} alt="My Image" />
+    </div>
+  );
+};
+
+export default image1.jpeg;
+

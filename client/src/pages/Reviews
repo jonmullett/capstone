@@ -1,0 +1,23 @@
+// import { useEffect, useState } from "react";
+// import axios from "axios";
+// import { Link } from "react-router-dom";
+
+// const Reviews = ({ reviews }) => {
+//   return (
+//     <>
+//       <h1>Reviews ({reviews.length}) </h1>
+//       <div class="reviewlinks">
+//         {reviews.map((review) => (
+//           <Link
+//             style={{ display: "block" }}
+//             to={`/reviewDetails/${reviews.id}`}
+//           >
+//             {review.reviewname}
+//           </Link>
+//         ))}
+//       </div>
+//     </>
+//   );
+// };
+
+// export default Reviews;
