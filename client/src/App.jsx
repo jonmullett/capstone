@@ -101,12 +101,12 @@ function App() {
           Businesses ({businesses.length})
         </NavLink>
 
-        <NavLink 
-        className={({ isActive }) => (isActive ? "style activenav" : "style")}
-        to="/users">
-          
+        <NavLink
+          className={({ isActive }) => (isActive ? "style activenav" : "style")}
+          to="/users"
+        >
           Users ({users.length})
-          </NavLink>
+        </NavLink>
 
         {auth.id ? (
           <Link to="/createReview">Create Review</Link>
